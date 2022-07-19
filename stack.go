@@ -6,8 +6,6 @@ package objabi
 
 import "loov.dev/lensm/internal/go/buildcfg"
 
-// For the linkers. Must match Go definitions.
-
 const (
 	STACKSYSTEM = 0
 	StackSystem = STACKSYSTEM
@@ -23,7 +21,6 @@ var StackLimit = StackGuard - StackSystem - StackSmall
 // stack guard size. Larger multipliers are used for non-optimized
 // builds that have larger stack frames or for specific targets.
 func stackGuardMultiplier() int {
-	// On AIX, a larger stack is needed for syscalls.
 	if buildcfg.GOOS == "aix" {
 		return 2
 	}
